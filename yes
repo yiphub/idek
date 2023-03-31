@@ -1,0 +1,18 @@
+local Flying = false -- Variable to keep track of whether the player is flying or not
+
+function Fly() 
+    if Flying == false then -- If the player is not flying, start flying
+        Flying = true 
+        game.Players.LocalPlayer.Character.Humanoid:ChangeState("Flying")
+    else -- If the player is already flying, stop flying
+        Flying = false 
+        game.Players.LocalPlayer.Character.Humanoid:ChangeState("Seated")
+    end
+end
+
+-- Bind the Fly() function to the E key
+game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessedEvent)
+    if input.KeyCode == Enum.KeyCode.E and not gameProcessedEvent then
+        Fly()
+    end
+end)
